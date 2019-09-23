@@ -36,8 +36,8 @@ namespace Roulette
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseFileServer(enableDirectoryBrowsing: true);
-            app.UseWebSockets(); // Only for Kestrel
-
+            app.UseWebSockets(); 
+            
             app.Map("/ws", builder =>
             {
                 builder.Use(async (context, next) =>
@@ -45,7 +45,7 @@ namespace Roulette
                     if (context.WebSockets.IsWebSocketRequest)
                     {
                         var webSocket = await context.WebSockets.AcceptWebSocketAsync();
-                        await Echo(webSocket);
+                        await AcceptWebsocket(webSocket);
                         return;
                     }
                     await next();
@@ -53,7 +53,7 @@ namespace Roulette
             });
         }
 
-        private async Task Echo(WebSocket webSocket)
+        private async Task AcceptWebsocket(WebSocket webSocket)
         {
             byte[] buffer = new byte[1024 * 4];
             
