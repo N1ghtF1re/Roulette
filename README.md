@@ -5,7 +5,7 @@
 <a href="https://github.com/N1ghtF1re/Roulette/stargazers"><img src="https://img.shields.io/github/stars/N1ghtF1re/Roulette.svg" alt="Stars"></a>
 <a href="https://github.com/N1ghtF1re/Roulette/releases"><img src="https://img.shields.io/badge/download-brightgreen.svg" alt="Download"></a>
 <a href="https://github.com/N1ghtF1re/Roulette/releases"><img src="https://img.shields.io/github/tag/N1ghtF1re/Roulette.svg" alt="Latest Stable Version"></a>
-<a href="https://github.com/N1ghtF1re/blob/master/LICENSE"><img src="https://img.shields.io/github/license/N1ghtF1re/Roulette.svg" alt="License"></a>
+<a href="https://github.com/N1ghtF1re/Roulette/blob/master/LICENSE"><img src="https://img.shields.io/github/license/N1ghtF1re/Roulette.svg" alt="License"></a>
 
 </p>
 </p>
