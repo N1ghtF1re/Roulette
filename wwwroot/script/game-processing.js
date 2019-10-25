@@ -1,13 +1,13 @@
-var lastBet = null;
+let lastBet = null;
 (function () {
-    var webSocketProtocol = location.protocol === "https:" ? "wss:" : "ws:";
-    var webSocketURI = webSocketProtocol + "//" + location.host + "/ws";
+    let webSocketProtocol = location.protocol === "https:" ? "wss:" : "ws:";
+    let webSocketURI = webSocketProtocol + "//" + location.host + "/ws";
 
-    var balanceElement = document.getElementById("balance-count");
+    let balanceElement = document.getElementById("balance-count");
 
 
 
-    var socket = new WebSocket(webSocketURI);
+    let socket = new WebSocket(webSocketURI);
 
 
     socket.onopen = function () {
@@ -24,7 +24,7 @@ var lastBet = null;
     };
 
     socket.onmessage = function (event) {
-        var message = JSON.parse(event.data);
+        let message = JSON.parse(event.data);
 
         switch (message.type) {
             case "ERROR_MESSAGE":
@@ -35,7 +35,7 @@ var lastBet = null;
                 spin(message['score']);
                 onSpin.push(function() { balanceElement.innerText = message['balance'] });
                 if (lastBet != null && lastBet.bets.includes(message['score'])) {
-                    var prize = (message['balance'] - getCurrentBalance());
+                    let prize = (message['balance'] - getCurrentBalance());
                     onSpin.push(function () {
                         showSuccess("You won " + prize + "$");
                     })
@@ -57,8 +57,8 @@ var lastBet = null;
         showError(error.message);
         console.log("Error: " + error.message);
     };
-    var betInput = document.getElementById("bet-input");
-    var betBtn = document.getElementById("bet");
+    let betInput = document.getElementById("bet-input");
+    let betBtn = document.getElementById("bet");
     
     betInput.addEventListener("keyup", function(event) {
         // Number 13 is the "Enter" key on the keyboard
@@ -69,8 +69,8 @@ var lastBet = null;
     });
 
     betBtn.onclick = function() {
-        var betsArray = getBets();
-        var amount = betInput.value * 1;
+        let betsArray = getBets();
+        let amount = betInput.value * 1;
 
         if (betsArray.length === 0) {
             showError("You haven't selected bet");
@@ -79,7 +79,7 @@ var lastBet = null;
         } else if (amount === 0) {
             showError("You can't bet nothing");
         } else {
-            var betRequest = {bets: getBets(), amount: betInput.value * 1};
+            let betRequest = {bets: getBets(), amount: betInput.value * 1};
             lastBet = betRequest;
             socket.send(JSON.stringify(betRequest));
             balanceElement.innerText -= betInput.value;
@@ -97,34 +97,34 @@ var lastBet = null;
     }
 
     function showError(message) {
-        var errorElement = document.getElementById("msg-error");
+        let errorElement = document.getElementById("msg-error");
 
         errorElement.innerText = message;
         errorElement.style = "";
     }
 
     function hideError() {
-        var errorElement = document.getElementById("msg-error");
+        let errorElement = document.getElementById("msg-error");
 
         errorElement.style = "display: none";
     }
 
     function showSuccess(message) {
-        var successElement = document.getElementById("msg-success");
+        let successElement = document.getElementById("msg-success");
 
         successElement.innerText = message;
         successElement.style = "";
     }
 
     function hideSuccess() {
-        var successElement = document.getElementById("msg-success");
+        let successElement = document.getElementById("msg-success");
 
         successElement.style = "display: none";
     }
 
 
     function addEventToEventList(event) {
-        var eventList = document.getElementById("chat-events");
+        let eventList = document.getElementById("chat-events");
 
         eventList.innerHTML += "<li><span class='username'>" + event.name + "</span>" + event.message + "</li>";
         eventList.scrollTop = eventList.scrollHeight;

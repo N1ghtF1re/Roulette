@@ -5,26 +5,26 @@
         "use strict"
 
         function getButtonCells(btn) {
-            var cells = btn.data('cells');
+            let cells = btn.data('cells');
             if (!cells || !cells.length) {
                 cells = [];
                 switch (btn.data('type')) {
                     case 'sector':
-                        var nums = sectors[btn.data('sector')];
+                        let nums = sectors[btn.data('sector')];
                         for (var i = 0, len = nums.length; i < len; i++) {
                             cells.push(table_nums[nums[i]]);
                         }
                         return cells;
-                        break;
+;
                     case 'num':
                     default:
-                        var nums = String(btn.data('num')).split(',');
+                        nums = String(btn.data('num')).split(',');
                         for (var i = 0, len = nums.length; i < len; i++) {
                             cells.push(table_nums[nums[i]]);
                         }
-                        btn.data('cells', cells)
+                        btn.data('cells', cells);
                         return btn.data('cells');
-                        break;
+
                 }
             }
             return cells;
@@ -68,13 +68,13 @@
 
         // init
         $(selectors.num).each(function() {
-            var $this = $(this),
+            let $this = $(this),
                 color,
                 num = Number($this.text());
             // add to instances array
             table_nums[num] = $this;
             // add to colors array
-            for (var color in numbers) {
+            for (color in numbers) {
                 if ($this.hasClass(classes[color])) {
                     numbers[color].push(num);
                     $this.data('color', color);
@@ -83,7 +83,7 @@
         })
 
         $(selectors.sector).each(function() {
-            var $this = $(this),
+            let $this = $(this),
                 color;
             if ($this.hasClass(classes.red)) {
                 color = 'red';
@@ -139,9 +139,9 @@
                 sectors['8'].push(i);
             }
 
-            if (numbers.red.indexOf(i) != -1) {
+            if (numbers.red.indexOf(i) !== -1) {
                 sectors['9'].push(i);
-            } else if (numbers.black.indexOf(i) != -1) {
+            } else if (numbers.black.indexOf(i) !== -1) {
                 sectors['10'].push(i);
             }
         }
@@ -164,12 +164,12 @@
             },
             function() {
                 hovering=0;
-                var $this = $(this),
+                const $this = $(this),
                     cells = getButtonCells($this);
                 for (var i = 0, len = cells.length; i < len; i++) {
                     cells[i].removeClass(classes.hover);
                 }
-                var sector = $this.data('sector');
+                const sector = $this.data('sector');
                 if (sector) {
                     table_sectors[sector].removeClass(classes.hover);
                 }
@@ -180,7 +180,7 @@
             var numbers=[];
             if(typeof $(this).data('sector') != 'undefined'){
 
-                if(e.button==2)changeBet(36+$(this).data('sector'),-1);
+                if(e.button===2)changeBet(36+$(this).data('sector'),-1);
                 else changeBet(36+$(this).data('sector'),+1);
             }
             else{
@@ -189,7 +189,7 @@
                 if(typeof numbers.length ==='undefined')numbers=[numbers];
                 else numbers=numbers.split(',');
 
-                if(e.button==2)for(var i=0;i<numbers.length;i++)changeBet(numbers[i],-1);
+                if(e.button===2)for(var i=0; i<numbers.length; i++)changeBet(numbers[i],-1);
                 else for(var i=0;i<numbers.length;i++)changeBet(numbers[i],+1);
             }
         });
@@ -200,8 +200,8 @@
 })(jQuery);
 
 
-var squares=new Array(48);
-var divs=document.getElementsByTagName("div");
+let squares = new Array(48);
+let divs = document.getElementsByTagName("div");
 
 function init() {
     for (var i = 0; i < divs.length; i++) {
@@ -230,7 +230,7 @@ window.addEventListener("resize", init);
 
 
 function getBets(){
-    var array = [];   
+    let array = [];
     bets.forEach(
         function (value, index) { 
             if (value !== 0) {
@@ -253,9 +253,9 @@ function getBets(){
 }
 
 function resetField(){
-    for(var i=0;i<bets.length;i++){
+    for(let i=0; i<bets.length; i++){
         bets[i]=0;
-        if(chips[i]!=null)for(var j=0;chips[i].length>0;j++)document.body.removeChild(chips[i].pop());
+        if(chips[i]!=null)for(let j=0; chips[i].length>0; j++)document.body.removeChild(chips[i].pop());
     }
 
 }
